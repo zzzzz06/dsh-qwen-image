@@ -1,0 +1,52 @@
+{
+  "name": "dsh-qwen-image",
+  "version": "0.5.2",
+  "description": "Qwen-Image 3.0 生图 / 改图插件（阿里云百炼 DashScope），API Key 由每位使用者自己配置",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.mjs",
+    "core.mjs",
+    "config.mjs",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE",
+    "AGENT.md",
+    "install.ps1",
+    "install.mjs",
+    "install.cmd",
+    "update.cmd",
+    "check.cmd",
+    "check-update.cmd",
+    "uninstall.cmd",
+    "update-source.json",
+    "selftest.mjs",
+    "regression.mjs",
+    "installer.test.mjs",
+    "smoke.mjs",
+    "smoke.ps1"
+  ],
+  "engines": {
+    "dsh": ">=0.2.1-rc.5"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "qwen",
+    "qwen-image",
+    "dashscope",
+    "image-generation"
+  ],
+  "license": "MIT"
+}

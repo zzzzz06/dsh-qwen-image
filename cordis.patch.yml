@@ -1,0 +1,13 @@
+# 这一层只负责把插件自己插进 profile。
+# 后层按 id 覆盖前层，config 是整段替换（不是深合并）。
+#
+# 这里刻意不写 apiKey：插件分发给别人时，每个人用自己的 Key。
+# 每位使用者的 Key 建议放在 ~/.dsh/.env 或 DASHSCOPE_API_KEY 环境变量里。
+- insert:
+    - id: qwen-image
+      name: dsh-qwen-image
+      config:
+        model: qwen-image-3.0
+        baseURL: https://dashscope.aliyuncs.com
+        apiKeyEnv: DASHSCOPE_API_KEY
+        dir: generated

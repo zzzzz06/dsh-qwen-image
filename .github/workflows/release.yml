@@ -1,0 +1,42 @@
+name: release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag, for example v0.5.2'
+        required: true
+        default: 'v0.5.2'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run local tests
+        shell: pwsh
+        run: |
+          node .\selftest.mjs
+          node .\regression.mjs
+          node .\installer.test.mjs
+      - name: Build zip, checksum and latest.json
+        shell: pwsh
+        run: .\release.ps1 -Repository ${{ github.repository }} -Tag "${{ inputs.tag || github.ref_name }}"
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ inputs.tag || github.ref_name }}
+          files: |
+            dist/*.zip
+            dist/*.sha256
+            dist/latest.json
+          generate_release_notes: true

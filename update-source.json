@@ -1,0 +1,9 @@
+{
+  "manifestUrl": "https://github.com/OWNER/REPO/releases/latest/download/latest.json",
+  "allowedHosts": [
+    "github.com",
+    "objects.githubusercontent.com",
+    "release-assets.githubusercontent.com",
+    "raw.githubusercontent.com"
+  ]
+}
